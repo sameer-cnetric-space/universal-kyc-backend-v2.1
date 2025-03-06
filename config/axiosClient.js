@@ -1,6 +1,8 @@
 const axios = require("axios");
 
-const axiosInstance = axios.create({ timeout: 30000 });
+const axiosInstance = axios.create({
+  timeout: 300000, // 5 minutes (300,000 milliseconds)
+});
 
 async function requestREST({
   method = "GET",
