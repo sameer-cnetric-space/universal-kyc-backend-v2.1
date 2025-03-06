@@ -97,6 +97,7 @@ class UserController {
         gender: user.gender,
         phone: user.phone,
         createdAt: user.createdAt,
+        isAadharVerified: user.isAadhaarVerified,
         kycs: kycStats,
       };
 
