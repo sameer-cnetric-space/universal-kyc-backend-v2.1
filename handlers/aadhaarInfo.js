@@ -15,22 +15,23 @@ class AadhaarHandler {
     }
 
     try {
-      const user = await User.findById(userId);
+      const user = await User.findOneAndUpdate(
+        { _id: userId },
+        {
+          aadhaarData: data,
+          isAadhaarVerified: true,
+        },
+        { new: true, runValidators: true } // Returns updated user & runs validation
+      );
+
       if (!user) {
         throw new Error("User not found");
       }
 
-      user.aadhaarData = data; // Directly assign data
-      user.markModified("aadhaarData"); // Mark field as modified for Mongoose
-
-      user.isAadhaarVerified = true;
-      user.markModified("isAadhaarVerified");
-      await user.save();
-
       return true;
     } catch (error) {
       console.error("Error adding Aadhaar details:", error);
-      throw new Error("Failed to add Aadhaar details"); // Rethrow for higher-level error handling
+      throw new Error("Failed to add Aadhaar details");
     }
   }
 }
