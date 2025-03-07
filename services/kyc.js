@@ -220,9 +220,8 @@ class KycService {
         email: kyc.userId?.email || "N/A",
         selfieImage: buildFileUrl(req, kyc.selfieImage),
         documentImage: buildFileUrl(req, kyc.documentImage),
-        documentBackImage: kyc?.documentBackImage
-          ? buildFileUrl(req, kyc.documentBackImage)
-          : null,
+        aadhaarImage: buildFileUrl(req, kyc.aadhaarImage),
+        pptPhoto: buildFileUrl(req, kyc.pptPhoto),
         kycStatus: kyc.kycStatus,
         createdAt: kyc.createdAt,
         updatedAt: kyc.updatedAt,
