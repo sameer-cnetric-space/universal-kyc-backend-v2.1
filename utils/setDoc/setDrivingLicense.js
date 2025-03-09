@@ -32,7 +32,7 @@ function calculateDlExpiry(issueDate, dateOfBirth) {
 const sanitizeDrivingLicenseData = (ocrData) => {
   const modOcrData = {
     documentNumber: ocrData?.documentNumber?.trim() || "", // DL number
-    name: ocrData?.name?.replace(/\^/g, "").trim() || "", // Remove special characters like '^'
+    name: ocrData?.name?.replace(/\^/g, "").trim().toLowerCase() || "", // Remove special characters like '^'
     dateOfBirth: ocrData?.dateOfBirth || "", // DOB
     dateOfIssue: ocrData?.dateOfIssue || "", // DL issue date
     dateOfExpiry:
@@ -48,7 +48,7 @@ const sanitizeDrivingLicenseData = (ocrData) => {
 const sanitizeModKycDataDrivingLicense = (kycData) => {
   const modKycData = {
     documentNumber: kycData?.idNumber?.trim() || "", // DL number
-    name: kycData?.user?.name?.replace(/\^/g, "").trim() || "", // Remove special characters like '^'
+    name: kycData?.user?.name?.replace(/\^/g, "").trim().toLowerCase() || "", // Remove special characters like '^'
     dateOfBirth: formatDate(kycData?.dob || ""), // DOB
     dateOfIssue: formatDate(kycData?.idIssueDate || ""), // DL issue date
     dateOfExpiry: formatDate(kycData?.idExpiryDate || ""), // DL expiry date

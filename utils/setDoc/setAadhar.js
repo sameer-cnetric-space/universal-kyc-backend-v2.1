@@ -4,7 +4,7 @@ const { formatDate } = require("../dateFormatter");
 const sanitizeAadharData = (ocrData) => {
   const modOcrData = {
     documentNumber: ocrData?.documentNumber?.trim() || "", // Aadhaar number
-    name: ocrData?.name?.replace(/\^/g, "").trim() || "", // Remove special characters like '^'
+    name: ocrData?.name?.replace(/\^/g, "").trim().toLowerCase() || "", // Remove special characters like '^'
     dateOfBirth: ocrData?.dateOfBirth || "", // DOB
     firstIssueDate: ocrData?.firstIssueDate || "", // ID issue date
     //address: ocrData?.address?.replace(/\^/g, "").trim() || "", // Remove special characters
@@ -16,7 +16,7 @@ const sanitizeAadharData = (ocrData) => {
 const sanitizeModKycDataAadhar = (kycData) => {
   const modKycData = {
     documentNumber: kycData?.idNumber?.trim() || "", // Aadhaar number
-    name: kycData?.user?.name?.replace(/\^/g, "").trim() || "", // Remove special characters like '^'
+    name: kycData?.user?.name?.replace(/\^/g, "").trim().toLowerCase() || "", // Remove special characters like '^'
     dateOfBirth: formatDate(kycData?.dob || ""), // DOB
     firstIssueDate: formatDate(kycData?.idIssueDate || ""), // ID issue date
     // Construct address safely

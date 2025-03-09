@@ -4,7 +4,7 @@ const { formatDate } = require("../dateFormatter");
 const sanitizePanCardData = (ocrData) => {
   const modOcrData = {
     documentNumber: ocrData?.documentNumber?.trim() || "", // PAN number
-    name: ocrData?.name?.replace(/\^/g, "").trim() || "", // Remove special characters like '^'
+    name: ocrData?.name?.replace(/\^/g, "").trim().toLowerCase() || "",
     dateOfBirth: ocrData?.dateOfBirth || "", // DOB
   };
   return modOcrData;
@@ -14,7 +14,7 @@ const sanitizePanCardData = (ocrData) => {
 const sanitizeModKycDataPanCard = (kycData) => {
   const modKycData = {
     documentNumber: kycData?.idNumber?.trim() || "", // PAN number
-    name: kycData?.user?.name?.replace(/\^/g, "").trim() || "", // Remove special characters like '^'
+    name: kycData?.user?.name?.replace(/\^/g, "").trim().toLowerCase() || "",
     dateOfBirth: formatDate(kycData?.dob || ""), // DOB
   };
   return modKycData;
