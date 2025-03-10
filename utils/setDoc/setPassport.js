@@ -4,7 +4,12 @@ const { formatDate } = require("../dateFormatter");
 const sanitizePassportData = (ocrData) => {
   const modOcrData = {
     documentNumber: ocrData?.documentNumber?.trim() || "", // Passport number
-    name: ocrData?.givenNames?.replace(/\^/g, "").trim().toLowerCase() || "", // Remove special characters like '^'
+    name:
+      ocrData?.name
+        ?.replace(/\^/g, "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .toLowerCase() || "",
     dateOfBirth: ocrData?.dateOfBirth || "", // DOB
     dateOfIssue: ocrData?.dateOfIssue || "", // Passport issue date
     dateOfExpiry: ocrData?.dateOfExpiry || "", // Passport expiry date

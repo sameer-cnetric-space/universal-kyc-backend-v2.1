@@ -4,7 +4,12 @@ const { formatDate } = require("../dateFormatter");
 const sanitizePanCardData = (ocrData) => {
   const modOcrData = {
     documentNumber: ocrData?.documentNumber?.trim() || "", // PAN number
-    name: ocrData?.name?.replace(/\^/g, "").trim().toLowerCase() || "",
+    name:
+      ocrData?.name
+        ?.replace(/\^/g, "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .toLowerCase() || "",
     dateOfBirth: ocrData?.dateOfBirth || "", // DOB
   };
   return modOcrData;

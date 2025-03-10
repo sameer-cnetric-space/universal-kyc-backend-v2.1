@@ -4,7 +4,12 @@ const { formatDate } = require("../dateFormatter");
 const sanitizeVoterIdData = (ocrData) => {
   const modOcrData = {
     documentNumber: ocrData?.documentNumber?.trim() || "", // Voter ID number
-    name: ocrData?.name?.replace(/\^/g, "").trim().toLowerCase() || "", // Remove special characters like '^'
+    name:
+      ocrData?.name
+        ?.replace(/\^/g, "")
+        .replace(/\s+/g, " ")
+        .trim()
+        .toLowerCase() || "",
     dateOfBirth: ocrData?.dateOfBirth || "", // DOB
   };
   return modOcrData;
